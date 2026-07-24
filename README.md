@@ -70,9 +70,10 @@ The network was defined as:
 
 Separate networks were developed for **member** and **casual** users to compare differences in travel behavior and demand patterns.
 
-![Member user OD flow](assets/member_OD_flow.png)
-
-![Casual user OD flow](assets/casual_OD_flow.png)
+<p align="center">
+  <img src="assets/member_OD_flow.png" alt="Member user OD flow" width="45%"/>
+  <img src="assets/casual_OD_flow.png" alt="Casual user OD flow" width="45%"/>
+</p>
 
 A dynamic Origin-Destination (OD) flow map was developed at the San Francisco neighborhood level to provide initial insights into:
 
@@ -80,7 +81,9 @@ A dynamic Origin-Destination (OD) flow map was developed at the San Francisco ne
 - Spatial differences between member and casual users
 - High-demand corridors and station connections
 
-![OD Flow Map](assets/OD_flow_map.png)
+<p align="center">
+  <img src="assets/OD_flow_map.png" alt="OD Flow Map" width="700"/>
+</p>
 
 ### 2. BFCA Framework
 
@@ -128,15 +131,21 @@ After applying the BFCA framework, multiple walking time thresholds (5, 10, 15, 
 
 The 15-minute walking threshold was selected as the primary accessibility measure, as it represents a realistic walking distance for accessing bike share stations.
 
-![BFCA Accessibility Map](assets/BFCA_accessibility_15min.png)
+<p align="center">
+  <img src="assets/BFCA_accessibility_15min.png" alt="BFCA Accessibility Map" width="400"/>
+</p>
 
 A bivariate analysis was conducted by combining Census tract income levels with BFCA accessibility scores to identify areas experiencing potential accessibility inequities.
 
-![Income vs BFCA Accessibility](assets/income_BFCA_bivariate.png)
+<p align="center">
+  <img src="assets/income_BFCA_bivariate.png" alt="Income vs BFCA Accessibility" width="400"/>
+</p>
 
 To incorporate actual travel demand patterns, a trip-based heatmap was developed by counting the number of Bay Wheels OD trip paths crossing each Census tract. The tracts outlined in red are previously identified low-income, low-access communities, many of which still experience high through-traffic, suggesting underserved but high-demand areas.
 
-![OD Trip Crossing Heatmap](assets/OD_crossing_heatmap.png)
+<p align="center">
+  <img src="assets/OD_crossing_heatmap.png" alt="OD Trip Crossing Heatmap" width="600"/>
+</p>
 
 By combining:
 - Low-income communities
@@ -206,8 +215,9 @@ The top-ranked candidate location was selected as priority equity station site i
 
 The proposed equity stations improve accessibility for underserved communities, with low-income areas experiencing up to **11% accessibility improvement** under the 15-minute walking threshold.
 
-![Accessibility Improvement by Income Group](assets/accessibility_improvement.png)
-
+<p align="center">
+  <img src="assets/accessibility_improvement.png" alt="Accessibility Improvement by Income Group" width="800"/>
+</p>
 
 ## References
 
