@@ -6,8 +6,12 @@
   <li><a href="#overview">Overview</a></li>
   <li><a href="#research-questions">Research Questions</a></li>
   <li><a href="#data-sources">Data Sources</a></li>
-  <li><a href="#methodology">Methodology</a></li>
+  <li><a href="#results">Results</a></li>
+  <li><a href="#references">References</a></li>
+  <li><a href="#data">Data</a></li>
+  <li><a href="#tools--technologies">Tools & Technologies</a></li> 
 </ol>
+
 
 ## Overview
 
@@ -77,7 +81,6 @@ A dynamic Origin-Destination (OD) flow map was developed at the San Francisco ne
 - High-demand corridors and station connections
 
 ![OD Flow Map](assets/OD_flow_map.png)
-
 
 ### 2. BFCA Framework
 
@@ -198,15 +201,18 @@ where:
 
 The top-ranked candidate location was selected as priority equity station site in each census tract.
 
+
 ## Results
 
 The proposed equity stations improve accessibility for underserved communities, with low-income areas experiencing up to **11% accessibility improvement** under the 15-minute walking threshold.
 
 ![Accessibility Improvement by Income Group](assets/accessibility_improvement.png)
 
+
 ## References
 
 Banerjee, S., Kabir, M. M., Khadem, N. K., & Chavis, C. (2020). Optimal locations for bikeshare stations: A new GIS based spatial approach. Transportation Research Interdisciplinary Perspectives, 4, 100101. https://doi.org/10.1016/j.trip.2020.100101
+
 
 ## Data
 
@@ -225,6 +231,7 @@ Due to file size limitations, some raw datasets used in this project are not inc
 | [Registered Business Locations](https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis/about_data) | Points of interest for station siting and community activity analysis |
 
 Processed datasets used for analysis can be provided upon request.
+
 
 ## Tools & Technologies
 
@@ -247,6 +254,3 @@ Processed datasets used for analysis can be provided upon request.
 - Origin-Destination analysis
 - GIS suitability modeling
 - Equity-based transportation planning
-
-
-
