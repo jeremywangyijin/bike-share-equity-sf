@@ -50,7 +50,7 @@ The analysis integrates transportation, demographic, spatial, and points-of-inte
 The final dataset includes:
 
 - 376 Bay Wheels stations in San Francisco
-- Station-level ridership records
+- Station-level ridership records from 2024.12 - 2025.11
 - Census tract demographic information
 - Street network information
 - Points-of-interest (POI) locations including businesses, transit stops and mid-blocks
