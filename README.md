@@ -20,7 +20,7 @@ While bike share provides an affordable and sustainable mobility option, accessi
 - Develop a data-driven framework for prioritizing future bike station locations
 
 **Key Finding:**  
-A GIS-based station siting model identified **10 potential equity-focused bike stations**, improving accessibility by up to **13%** for underserved communities.
+A GIS-based station siting model identified **10 potential equity-focused bike stations**, improving accessibility by up to **11%** for underserved communities.
 
 
 ## Research Questions
@@ -119,65 +119,112 @@ $$
 \sum_i A_i P_i = \sum_j S_j
 $$
 
-### 3. Equity-Based Station Siting Model
+### 3. Accessibility and Equity Assessment
 
-A GIS-based suitability model was developed to identify priority locations for future bike stations.
+After applying the BFCA framework, multiple walking time thresholds (5, 10, 15, and 20 minutes) were tested to evaluate bike share accessibility across San Francisco Census tracts.
 
-Candidate locations were evaluated using:
+The 15-minute walking threshold was selected as the primary accessibility measure, as it represents a realistic walking distance for accessing bike share stations.
 
-### Demand Indicators
+![BFCA Accessibility Map](assets/BFCA_accessibility_15min.png)
 
-- Low-income population percentage
-- Existing bike share trip flows
+A bivariate analysis was conducted by combining Census tract income levels with BFCA accessibility scores to identify areas experiencing potential accessibility inequities.
 
-### Accessibility Indicators
+![Income vs BFCA Accessibility](assets/income_BFCA_bivariate.png)
 
-- Distance to essential destinations
-- Public transit accessibility
-- Nearby points of interest (POIs)
+To incorporate actual travel demand patterns, a trip-based heatmap was developed by counting the number of Bay Wheels OD trip paths crossing each Census tract. The tracts outlined in red are previously identified low-income, low-access communities, many of which still experience high through-traffic, suggesting underserved but high-demand areas.
 
-A final suitability score was calculated to rank candidate locations.
+![OD Trip Crossing Heatmap](assets/OD_crossing_heatmap.png)
 
-![Station suitability model](figures/station_suitability.png)
+By combining:
+- Low-income communities
+- Low bike share accessibility
+- High Bay Wheels trip activity
 
+10 Census tracts were identified as priority candidates for future equity-focused station siting.
+
+### 4. Equity-Based Station Siting Model
+
+A GIS-based suitability model was developed to identify priority locations for future Bay Wheels stations by integrating equity factors, population demand, and accessibility to key destinations.
+
+The framework includes:
+
+Step 1: Demand Weight Calculation
+Estimated block group demand by incorporating population and equity factors (using block group median income):
+
+$$
+Demand\ Weight_i = Population_i \times Equity\ Factor_i
+$$
+
+Step 2: Candidate Site Generation
+Extracted potential station locations from POIs, including: SF Mid Block Points, Muni stops and Registered Business Locations
+
+Step 3: Calculate Proximity Scores
+Each candidate location was evaluated based on proximity to essential destinations (Public transit stations) and community attractions (business locations).
+
+The proximity score was calculated based on distance decay:
+
+$$
+S_{e/a} = \frac{0.19-d+0.001}{0.19}
+$$
+
+where:
+
+- $d$ = distance between the candidate site and the nearest destination
+
+Step 4: Suitability Scoring
+Evaluated candidate sites based on proximity to essential destinations and attractions, including transit access and community resources.
+
+$$
+SS =
+\left(\frac{S_e-S_{e,min}}{S_{e,max}-S_{e,min}}\right)\times0.5+
+\left(\frac{S_a-S_{a,min}}{S_{a,max}-S_{a,min}}\right)\times0.5
+$$
+
+Step 5: Site Ranking
+Applied a market share model combining demand weights, suitability scores, and distance decay to rank candidate locations and select priority equity stations.
+
+$$
+M_j =
+\sum_i b_i
+\frac{SS_j/d_{ij}}
+{\sum_j(SS_j/d_{ij})}
+$$
+
+where:
+
+- $M_j$ = estimated market share of candidate station $j$
+- $b_i$ = demand weight of Census block group $i$
+- $d_{ij}$ = distance between demand location $i$ and candidate station $j$
+
+The top-ranked candidate location was selected as priority equity station site in each census tract.
 
 ## Results
 
-### Existing Accessibility Gaps
+The proposed equity stations improve accessibility for underserved communities, with low-income areas experiencing up to **11% accessibility improvement** under the 15-minute walking threshold.
 
-The analysis identified spatial disparities in bike share accessibility across San Francisco.
+![Accessibility Improvement by Income Group](assets/accessibility_improvement.png)
 
-Key observations:
+## References
 
-- Some low-income communities had limited access to bike share stations.
-- Several high-demand corridors lacked nearby station access.
-- Accessibility gaps were concentrated in specific Census tracts.
+Banerjee, S., Kabir, M. M., Khadem, N. K., & Chavis, C. (2020). Optimal locations for bikeshare stations: A new GIS based spatial approach. Transportation Research Interdisciplinary Perspectives, 4, 100101. https://doi.org/10.1016/j.trip.2020.100101
 
-![Current accessibility map](figures/current_accessibility.png)
+## Data
 
+Due to file size limitations, some raw datasets used in this project are not included in this repository. The datasets can be accessed from the original sources below:
 
-### Proposed Equity Stations
+| Dataset | Description |
+|----------|-------------|
+| [SF Census Tracts](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2020-Tracts-for-San-Francisco/tmph-tgz9/about_data) | Census tract boundaries for spatial analysis |
+| [SF Census Block Groups](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Census-2020-Block-Groups-for-San-Francisco/24e8-pd2q/about_data) | Census block group boundaries for demographic and equity analysis |
+| [Bay Wheels Station Data](https://baywheels.com/system-data) | Station locations and dock capacity |
+| [Bay Wheels Trip Data](https://baywheels.com/system-data) | Historical bike share trip records |
+| [Census Demographic Data](https://data.census.gov/) | Population, income, and socioeconomic characteristics |
+| [Street Network Data](https://www.openstreetmap.org/) | Pedestrian network for accessibility analysis |
+| [SF Mid Block Points](https://data.sfgov.org/Geographic-Locations-and-Boundaries/San-Francisco-Mid-Block-Points/iqyu-pwpr/about_data) | Candidate station locations and spatial reference points |
+| [Muni Stops](https://data.sfgov.org/Transportation/Muni-Stops/i28k-bkz6/about_data) | Public transit accessibility indicators |
+| [Registered Business Locations](https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis/about_data) | Points of interest for station siting and community activity analysis |
 
-Based on accessibility gaps and demand patterns, **10 equity-focused station locations** were proposed.
-
-The candidate stations were selected based on:
-
-- High transportation demand
-- Low existing accessibility
-- Strong improvement potential
-
-![Proposed equity stations](figures/proposed_stations.png)
-
-
-### Accessibility Improvement
-
-After adding the proposed stations:
-
-- Accessibility improved by up to **13%**
-- Improvements were concentrated in underserved neighborhoods
-
-![Before and after comparison](figures/accessibility_comparison.png)
-
+Processed datasets used for analysis can be provided upon request.
 
 ## Tools & Technologies
 
@@ -201,7 +248,5 @@ After adding the proposed stations:
 - GIS suitability modeling
 - Equity-based transportation planning
 
-
-## Project Structure
 
 
